@@ -57,14 +57,17 @@ app.get('/', (req, res) => {
 
 app.post('/login', (req, res)=>{
   User.find({'email' : req.body.email}, (err, users) => {
-    if(err) console.log(err);
-    if(users == [])
-    {
+    if(err) console.log(err);    
+
+    if(users.length === 0)
+    {      
       res.json({"error" : "invalid username"});
+      return
     }
     else
     {
       var user = users[0];
+      console.log(users)
       bcrypt.compare(req.body.password, user.password, (err, match) => {
           if(err) console.log(err);
           if(match)

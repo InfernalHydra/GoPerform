@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Map from './Map/Map'
-import NavigationIcon from './Map/NavigationIcon';
+import NavigationIcon from './NavigationIcon';
 export default class MapContainer extends React.Component {
     constructor(props) {
         super(props)
@@ -12,7 +12,7 @@ export default class MapContainer extends React.Component {
         return (
             <View style={styles.container}>
                 <Map/>
-                <NavigationIcon/>
+                <NavigationIcon navigation={this.props.navigation}/>
             </View>
         )
     }
