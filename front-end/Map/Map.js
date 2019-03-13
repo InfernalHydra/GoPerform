@@ -52,7 +52,7 @@ export default class Map extends React.Component {
     this.setState({ locationResult: JSON.stringify(location) });
     
     // Center the map on the location we just fetched.
-     this.setState({mapRegion: { latitude: location.coords.latitude, longitude: location.coords.longitude, latitudeDelta: 0.0922, longitudeDelta: 0.0421 }});
+     this.setState({mapRegion: { latitude: location.coords.latitude, longitude: location.coords.longitude, latitudeDelta: 0.00922, longitudeDelta: 0.00421 }});
      //console.log("I fell")
    };
 
@@ -83,8 +83,9 @@ export default class Map extends React.Component {
             coordinate={{latitude, longitude}}
             title={"IT WAS ME DIO!"}
             description={"This is a DescriPtion"}
+            pinColor={'cyan'}
           />
-          <MapView.Circle center={{latitude, longitude}} radius={40} />
+          <MapView.Circle center={{latitude, longitude}} radius={40} strokeColor={"cyan"}/>
 
           {this.state.data.map((performance, index) => {
             let {latitude, longitude} = performance.location;
@@ -94,7 +95,7 @@ export default class Map extends React.Component {
             coordinate={{latitude, longitude}}
             title={performance.title}
             onCalloutPress={this.handleClick.bind(this, index)}
-            description={"This is a DescriPtion \n dsafadsfdasfadsfsadf"}>
+            description={"I bet you didn't expect that"}>
             <MapView.Callout tooltip>
               <CustomCallout>
                 <Text style = {{fontSize : 20, textAlign : 'center'}}>{performance.title}</Text>
