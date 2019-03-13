@@ -72,7 +72,7 @@ export default class Register extends React.Component {
       </View>
     );
   }
-
+ 
   handleSubmit()
   {
     //console.log(this.state)

@@ -16,7 +16,7 @@ const MainNavigator = createStackNavigator({
     }
   },
   Login: {
-    screen: MapContainer, 
+    screen: Login, 
     navigationOptions: {
       header:null
     }

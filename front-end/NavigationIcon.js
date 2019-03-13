@@ -15,7 +15,9 @@ export default class NavigationIcon extends React.Component {
     }
 
     onNav (val) {
+        
         this.props.navigation.navigate(val);
+        this.onClick()
     }
     render() {
         if (this.state.open) {
