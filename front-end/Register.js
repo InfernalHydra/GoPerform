@@ -7,7 +7,7 @@ export default class Register extends React.Component {
     super(props);
     this.state = {
       name: "",
-      username: "",
+      userName: "",
       password: "",
       email: "",
       phoneNum: "",
@@ -28,60 +28,111 @@ export default class Register extends React.Component {
     else
     {
       return (
+        <View>
         <View style={styles.container}>
-          <Text style={styles.inputLabel}>Name</Text>
-          <TextInput
-              style={styles.input}
-              placeholder = "Enter Name"
-              onChangeText={(text) => this.setState({name: text})}
-              value={this.state.name}
-          />
-          <Text style={styles.inputLabel}>Username</Text>
-          <TextInput
-              style={styles.input}
-              onChangeText={(text) => this.setState({username: text})}
-              placeholder = "Enter Username"
-              value={this.state.userName}
-          />
-  
+          <View style={styles.reeses}>
+            <Text style={styles.inputLabel}>Name</Text>
+          </View>
+          <View style={styles.pb}>
+            <TextInput
+              style={{...styles.input , ...styles.pb}}
+                  placeholder = "Enter Name"
+                  onChangeText={(text) => this.setState({name: text})}
+                  value={this.state.name}
+            />
+          </View>
+
+          <View style={styles.LMAO}></View>
+
+
+          <View style={styles.reeses}>
+            <Text style={styles.inputLabel}>Username</Text>
+          </View>
+          <View style={styles.pb}>
+
+            <TextInput
+            style={{...styles.input , ...styles.pb}}
+                onChangeText={(text) => this.setState({username: text})}
+                placeholder = "Enter Username"
+                value={this.state.userName}
+            />
+          </View>
+          <View style={styles.LMAO}></View>
+
+          <View style={styles.reeses}>
+
           <Text style={styles.inputLabel}>Password</Text>
+          </View>
+          <View style={styles.pb}>
+
           <TextInput
               placeholder = "Enter Password"
               secureTextEntry
-              style={styles.input}
+              style={{...styles.input , ...styles.pb}}
               onChangeText={(text) => this.setState({password: text})}
               value={this.state.password}
           />
-  
+          </View>
+          <View style={styles.LMAO}></View>
+
+
+          <View style={styles.reeses}>
+
           <Text style={styles.inputLabel}>Email</Text>
+          </View>
+          <View style={styles.pb}>
+
           <TextInput
-              style={styles.input}
+          style={{...styles.input , ...styles.pb}}
               placeholder = "Enter Email"
               onChangeText={(text) => this.setState({email: text})}
               value={this.state.email}
           />
-  
+          </View>
+          <View style={styles.LMAO}></View>
+
+
+          <View style={styles.reeses}>
+
           <Text style={styles.inputLabel}>Phone Number</Text>
+          </View>
+          <View style={styles.pb}>
+
           <TextInput
             placeholder = "Enter Phone Number"
-              style={styles.input}
+            style={{...styles.input , ...styles.pb}}
               onChangeText={(text) => this.setState({phoneNum: text})}
               value={this.state.phoneNum}
           />
+          </View>
+
+          <View style={styles.LMAO}></View>
+          <View style={styles.LMAO}></View>
+          <View style={styles.LMAO}></View>
+          <View style={styles.LMAO}></View>
+          <View style={styles.LMAO}></View>
+          <View style={styles.LMAO}></View>
+          <View style={styles.LMAO}></View>
+
           {this.state.response.error && <Text style={styles.inputLabel}>{this.state.response.error}</Text>}
-          <Button
-          onPress={this.handleSubmit.bind(this)}
-          title = "Submit"
-          >
-          </Button>
-          <NavigationIcon navigation={this.props.navigation}/>
-  
+
+          <View style={styles.bigB}>
+
+            <Text style={styles.bigT}
+              onPress={this.handleSubmit.bind(this)}
+            >SUBMIT</Text>
+          </View>
+
+
+
+        </View>
+        <NavigationIcon navigation={this.props.navigation}/>
         </View>
       );
     }
 
   }
- 
+
   handleSubmit()
   {
     //console.log(this.state)
@@ -107,7 +158,7 @@ export default class Register extends React.Component {
     password: "",
     email: "",
     phoneNum: "",
-  })}); 
+  })});
   }
 
 }
@@ -116,14 +167,44 @@ const styles = StyleSheet.create({
   container: {
     height:"100%",
     width:"100%",
-    backgroundColor: '#fff',
-    alignItems: 'flex-start',
+    backgroundColor: '#D1CFE2',
+    alignItems: 'center',
     justifyContent: 'flex-start',
     paddingTop: '15%',
-    paddingLeft: '5%'
+    paddingLeft: '10%',
+    paddingRight: '10%'
   },
   inputLabel: {
-    fontSize: 20
+    fontSize: 40,
+    color: 'white'
+
   },
-  input: {height: 40, borderColor: 'gray', borderWidth: 1, width: 200, marginBottom: 30}
+  input: {height: "100%", borderColor: 'gray', borderWidth: 1, width: 200, marginBottom: 30, fontSize: 42},
+  LMAO: {
+    height: 40
+  },
+  reeses: {
+    backgroundColor: '#9CADCE',
+    width: '100%',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    alignItems: 'center'
+  },
+  pb: {
+    width: '100%',
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    backgroundColor: 'white',
+    height: 50
+  },
+  bigB: {
+    width: 300,
+    backgroundColor: '#7EC4CF',
+    alignItems: 'center',
+    borderRadius: 10
+  },
+  bigT: {
+    color: 'white',
+    fontSize: 60
+  }
 });

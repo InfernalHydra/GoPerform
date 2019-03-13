@@ -15,34 +15,43 @@ export default class NavigationIcon extends React.Component {
     }
 
     onNav (val) {
-        
+
         this.props.navigation.navigate(val);
         this.onClick()
     }
     render() {
         if (this.state.open) {
             return(
-                <View style={styles.opened}>                    
+                <View style={styles.opened}>
+                    <View style={styles.jizz}></View>
+                    <View style={styles.jizz}></View>
+                    <View style={styles.jizz}></View>
+
                     <View style={styles.container}>
                         {navigationTargets.map((val, ind) => {
-                            return <Button key={ind} title={val} style={styles.inner} onPress={this.onNav.bind(this, val)}/>                                                     
+                            return (
+                              <View key={ind}  style={styles.condom}>
+                                <Text style={styles.inputLabel} onPress={this.onNav.bind(this, val)}>{val}</Text>
+                              </View>
+                            )
                         })}
                     </View>
-                    <TouchableHighlight style={styles.circle} onPress={this.onClick}> 
-                        <Text style={styles.text}>-</Text>         
+
+                    <TouchableHighlight style={styles.circle} onPress={this.onClick}>
+                        <Text style={styles.text}>-</Text>
                     </TouchableHighlight>
                 </View>
             )
         }
         else {
             return(
-                <TouchableHighlight style={styles.circle} onPress={this.onClick}> 
-                    <Text style={styles.text}>+</Text>         
+                <TouchableHighlight style={styles.circle} onPress={this.onClick}>
+                    <Text style={styles.text}>+</Text>
                 </TouchableHighlight>
-                
+
             )
         }
-        
+
     }
 }
 
@@ -72,11 +81,27 @@ const styles = StyleSheet.create({
         zIndex: 10000,
         borderRadius:40,
         borderColor: "red",
-        backgroundColor: "blue",        
+        backgroundColor: "blue",
         width:50,
         height:50,
         bottom: 20,
         right: 20,
         position:"absolute"
+    },
+    jizz: {
+      height:'5%'
+    },
+    condom: {
+      height: '15%',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: "#52B2CF",
+      borderWidth: 1,
+      borderColor: 'black'
+    },
+    inputLabel: {
+      fontSize: 40,
+      color: 'white'
+
     },
   });
