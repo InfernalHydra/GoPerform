@@ -5,7 +5,13 @@ var ObjectId = Schema.ObjectId;
 var performanceSchema = new Schema({
     location: {latitude : Number, longitude : Number},
     title: String,
-    user : [ ObjectId ],
+    genre: String,
+    user : {
+        username : {type : String},
+        name : {type : String},
+        email : {type : String},
+        phoneNumber : {type : String},
+    },
 });
 
 var Performance = mongoose.model('Performance', performanceSchema);

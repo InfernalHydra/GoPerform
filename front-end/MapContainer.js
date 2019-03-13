@@ -2,6 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Map from './Map/Map'
 import NavigationIcon from './NavigationIcon';
+import UserModal from './UserModal';
+
 export default class MapContainer extends React.Component {
     constructor(props) {
         super(props)

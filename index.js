@@ -54,6 +54,21 @@ app.get('/api/user', (req, res) => {
   res.json({"currentUser" : req.user});
 });
 
+app.get('/api/user/:id', (req, res) => {
+  console.log(req.params.id);
+  User.findOne({_id : req.params.id}, {password : 0}, (err, user) => {
+    if(user == null)
+    {
+      res.json({"error" : "invalid id"});
+      return;
+    }
+    else
+    {
+      res.send(JSON.stringify(user));
+    }
+  })
+});
+
 app.post('/login', (req, res)=>{
   User.find({'email' : req.body.email}, (err, users) => {
     if(err) console.log(err);    
@@ -110,7 +125,7 @@ app.post('/add', (req, res) => {
 })
 
 app.get('/api/performances', (req, res) => {
-    Performance.find({}, {location : 1, title : 1}, (err, performances) => {
+    Performance.find({}, (err, performances) => {
         if(err) console.log(err);
         res.send(JSON.stringify(performances));
     })
