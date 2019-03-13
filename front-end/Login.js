@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View , TextInput, Button, Image} from 'react-native';
+import { StyleSheet, Text} from 'react-native';
 import NavigationIcon from './NavigationIcon';
+import { Container, Header, Content, Form, Item, Input, Label, Button, Card, CardItem, View } from 'native-base';
+
 export default class Login extends React.Component {
   constructor(props)
   {
@@ -14,54 +16,36 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <View>
-      <View style={styles.container}>
+      <Container> 
+          <Text style={styles.top}>Login</Text>             
+          <Card style={styles.card}>
+            <Form style={{marginBottom:'10%'}}> 
+              <Item floatingLabel>
+                <Label>Email</Label>
+                <Input onChangeText={(text) => this.setState({email: text})}
+                  value={this.state.email}/>
+              </Item>
+              <Item floatingLabel>
+                <Label>Password</Label>
+                <Input 
+                  secureTextEntry
+                  onChangeText={(text) => this.setState({password: text})}
+                  value={this.state.password}/>
+              </Item>
+              
+              
+            </Form>
 
-        <View style={styles.reeses}>
+            <Button block light onPress={this.handleSubmit.bind(this)}>
+                <Text>Submit</Text>
+            </Button>
+          </Card>  
+          
+          <NavigationIcon navigation={this.props.navigation}/>          
+      </Container>
 
-        <Text style={styles.inputLabel}>Email</Text>
-        </View>
-        <View style={styles.pb}>
-
-        <TextInput
-            style={{...styles.input , ...styles.pb}}
-            onChangeText={(text) => this.setState({email: text})}
-            placeholder = "Enter email"
-            value={this.state.email}
-        />
-        </View>
-        <View style={styles.MIDLMAO}></View>
-
-
-        <View style={styles.reeses}>
-        <Text style={styles.inputLabel}>Password</Text>
-        </View>
-
-        <View style={styles.pb}>
-
-        <TextInput
-            secureTextEntry
-            placeholder = "Enter Password"
-            style={{...styles.input , ...styles.pb}}
-            onChangeText={(text) => this.setState({password: text})}
-            value={this.state.password}
-        />
-        </View>
-
-        <View style={styles.BIGLMAO}></View>
-
-        <View style={styles.bigB}>
-
-          <Text style={styles.bigT}
-            onPress={this.handleSubmit.bind(this)}
-          >SUBMIT</Text>
-        </View>
-
-
-
-      </View>
-      <NavigationIcon navigation={this.props.navigation}/>
-      </View>
+      
+      
     );
   }
   handleSubmit()
@@ -84,7 +68,7 @@ export default class Login extends React.Component {
   })
   .then(response => response.json()).then((payload) => {
     //console.log(payload);
-    if(payload.status == 'success')
+    if(payload.status == 'success') 
     {
       this.props.navigation.navigate('Map');
     }
@@ -104,51 +88,14 @@ export default class Login extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    height:"100%",
-    width:"100%",
-    backgroundColor: '#D1CFE2',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: '0%',
-    paddingLeft: '0%'
+  card: {
+    zIndex:-1,
+    elevation:-1,
   },
-  inputLabel: {
-    fontSize: 60,
-    color: 'white'
-  },
-  input: {height: "100%", borderColor: 'gray', borderWidth: 1, width: 200, marginBottom: 30, fontSize: 42},
-  LMAO: {
-    height: 20
-  },
-  MIDLMAO: {
-    height: 70
-  },
-  BIGLMAO: {
-      height: 320
-    },
-  reeses: {
-    backgroundColor: '#9CADCE',
-    width: 350,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    alignItems: 'center'
-  },
-  pb: {
-    width: 350,
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
-    backgroundColor: 'white',
-    height: 50
-  },
-  bigB: {
-    width: 300,
-    backgroundColor: '#7EC4CF',
-    alignItems: 'center',
-    borderRadius: 10
-  },
-  bigT: {
-    color: 'white',
-    fontSize: 60
+  top: {
+    textAlign: 'center',  
+    marginTop:"30%",    
+  
   }
 });
+

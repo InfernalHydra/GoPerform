@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
+import { Container, Header, Content, Form, Item, Input, Label, Button, Card, CardItem } from 'native-base';
 
 const navigationTargets = ['Login', 'Register', 'Map', 'AddPerformance']
 export default class NavigationIcon extends React.Component {
@@ -33,23 +34,21 @@ export default class NavigationIcon extends React.Component {
         if (this.state.open) {
             return(
                 <View style={styles.opened}>
-                    <View style={styles.jizz}></View>
-                    <View style={styles.jizz}></View>
-                    <View style={styles.jizz}></View>
-
                     <View style={styles.container}>
-                        <Button title = "Log Out" style={styles.inner} onPress={this.logout.bind(this)} />
-                        {navigationTargets.map((val, ind) => {
-                            return (
-                              <View key={ind}  style={styles.condom}>
-                                <Text style={styles.inputLabel} onPress={this.onNav.bind(this, val)}>{val}</Text>
-                              </View>
-                            )
-                        })}
+                    <Button block light onPress={this.logout.bind(this)} style={styles.button}>
+                        <Text>Logout</Text>
+                    </Button>
+                    {navigationTargets.map((val, ind) => {
+                        return (
+                            <Button key={ind} block light onPress={this.onNav.bind(this, val)} style={styles.button}>
+                                <Text>{val}</Text>
+                            </Button>                              
+                        )
+                    })}                    
                     </View>
-
-                    <TouchableHighlight style={styles.circle} onPress={this.onClick}>
-                        <Text style={styles.text}>-</Text>
+                    
+                    <TouchableHighlight style={styles.circleInv} onPress={this.onClick}>
+                        <View/>
                     </TouchableHighlight>
                 </View>
             )
@@ -57,7 +56,7 @@ export default class NavigationIcon extends React.Component {
         else {
             return(
                 <TouchableHighlight style={styles.circle} onPress={this.onClick}>
-                    <Text style={styles.text}>+</Text>
+                    <View/>
                 </TouchableHighlight>
 
             )
@@ -68,7 +67,8 @@ export default class NavigationIcon extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        top:50
+        top:50,
+        
     },
     inner: {
         marginLeft: 10,
@@ -76,12 +76,12 @@ const styles = StyleSheet.create({
 
     },
     opened:{
-        backgroundColor: "grey",
-        opacity:0.5,
-        zIndex:10000000,
+        backgroundColor: "rgba(100,100,100,0.5)",        
+        zIndex: 100000000000000,
         position:"absolute",
         width:"100%",
         height:"100%",
+        elevation:5,
     },
     text: {
         top:"50%",
@@ -91,28 +91,30 @@ const styles = StyleSheet.create({
     circle: {
         zIndex: 10000,
         borderRadius:40,
-        borderColor: "red",
-        backgroundColor: "blue",
+        borderStyle: "solid",
+        borderWidth: 2,
+        borderColor: "cyan",
+        backgroundColor: "grey",
         width:50,
         height:50,
         bottom: 20,
         right: 20,
         position:"absolute"
     },
-    jizz: {
-      height:'5%'
+    circleInv: {
+        zIndex: 10000,
+        borderRadius:40,
+        borderStyle: "solid",
+        borderWidth: 2,
+        borderColor: "grey",
+        backgroundColor: "cyan",
+        width:50,
+        height:50,
+        bottom: 20,
+        right: 20,
+        position:"absolute"
     },
-    condom: {
-      height: '15%',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: "#52B2CF",
-      borderWidth: 1,
-      borderColor: 'black'
-    },
-    inputLabel: {
-      fontSize: 40,
-      color: 'white'
-
-    },
+    button: {
+        margin:10
+    }
   });

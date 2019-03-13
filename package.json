@@ -13,9 +13,11 @@
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "mongoose": "^5.4.19",
+    "native-base": "^2.12.1",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-maps": "^0.23.0",
+    "react-native-overlay": "^0.5.0",
     "react-navigation": "^3.3.2"
   },
   "devDependencies": {

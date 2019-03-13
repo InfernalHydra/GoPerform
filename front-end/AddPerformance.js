@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View , TextInput, Button} from 'react-native';
+import { StyleSheet, Text} from 'react-native';
 import { Constants, MapView, Location, Permissions } from 'expo';
+import { Container, Header, Content, Form, Item, Input, Label, Button, Card, CardItem } from 'native-base';
+
 import NavigationIcon from './NavigationIcon';
 export default class AddPerformance extends React.Component {
   constructor(props)
@@ -58,29 +60,28 @@ export default class AddPerformance extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.inputLabel}>Title</Text>
-        <TextInput
-            style={styles.input}
-            onChangeText={(text) => this.setState({title: text})}
-            placeholder = "Title"
-            value={this.state.title}
-        />
-        <Text style={styles.inputLabel}>Address</Text>
-        <TextInput
-            style={styles.input}
-            onChangeText={(text) => this.setState({address: text})}
-            placeholder = "Address"
-            value={this.state.address}
-        />
-        <Button
-        onPress={this.handleSubmit.bind(this)}
-        title = "Submit"
-        >
+      <Container> 
+      <Text style={styles.top}>Add a Preformance</Text>             
+      <Card style={styles.card}>
+        <Form style={{marginBottom:'10%'}}> 
+          <Item floatingLabel>
+            <Label>Title</Label>
+            <Input onChangeText={(text) => this.setState({title: text})}
+            value={this.state.title}/>
+          </Item>
+          <Item floatingLabel>
+            <Label>Address</Label>
+            <Input 
+              onChangeText={(text) => this.setState({address: text})}
+              value={this.state.address}/>
+          </Item>          
+        </Form>
+        <Button block light onPress={this.handleSubmit.bind(this)}>
+            <Text>Submit</Text>
         </Button>
-        <NavigationIcon navigation={this.props.navigation}/>
-
-      </View>
+      </Card>  
+      <NavigationIcon navigation={this.props.navigation}/>            
+  </Container>      
     );
   }
   handleSubmit = async () =>
@@ -114,17 +115,11 @@ export default class AddPerformance extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    height:"100%",
-    width:"100%",
-    backgroundColor: '#fff',
-    alignItems: 'flex-start',
-    justifyContent: 'flex-start',
-    paddingTop: '15%',
-    paddingLeft: '5%'
+  card: {
   },
-  inputLabel: {
-    fontSize: 20
-  },
-  input: {height: 40, borderColor: 'gray', borderWidth: 1, width: 200, marginBottom: 30}
+  top: {
+    textAlign: 'center',  
+    marginTop:"30%",    
+  
+  }
 });
