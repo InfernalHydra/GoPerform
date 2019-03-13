@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {StyleSheet, Button, Modal, Text, TouchableHighlight, View, Alert} from 'react-native';
+import {StyleSheet, Modal, Text, TouchableHighlight, View, Alert} from 'react-native';
 import NavigationIcon from './NavigationIcon';
+import { Container, Header, Content, Form, Item, Input, Label, Button, Card, CardItem } from 'native-base';
 
 export default class Recommendations extends React.Component {
     constructor(props)
@@ -28,18 +29,14 @@ export default class Recommendations extends React.Component {
     else
     {
         return (
-            <View style = {{width : '100%', height : '100%'}}>
-              <View>
-                  <View>
-                      <View>
-                          <Text style = {{fontSize : 20, textAlign : 'center'}}>Recommendations</Text>
-                          {/* <Text style = {{textAlign : 'center'}}>{this.props.data[this.props.index].username}</Text> */}
-                          {this.state.popData.slice(0, 5).map((recommendation, index) => {
-                              return <Text key = {index} style = {{textAlign : 'center'}}>{recommendation.name}</Text>;
-                          })}
-                      </View>
-                  </View>
-              </View>
+            <View style = {{width : '100%', height : '100%', marginTop: "20%"}}>
+                <Container>
+                    <Text style = {{fontSize : 20, textAlign : 'center'}}>Recommendations</Text>
+                    {/* <Text style = {{textAlign : 'center'}}>{this.props.data[this.props.index].username}</Text> */}
+                    {this.state.popData.slice(0, 5).map((recommendation, index) => {
+                        return <Card key={index} style={{textAlign : 'center'}}><Text>{recommendation.name}</Text></Card>;
+                    })}
+                </Container>
               <NavigationIcon navigation={this.props.navigation}/>
             </View>
           );
