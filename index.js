@@ -93,8 +93,18 @@ app.get('/logout', (req, res) => {
 });
 
 app.post('/add', (req, res) => {
-  Performance.create({location : {lat : req.body.lat, lng : req.body.lng}, title : req.body.title});
-  res.json({"status" : "success"});
+  //console.log(req.user);
+  // if(!req.user)
+  // {
+  //   res.json({"error" : "no user logged in"});
+  //   return;
+  // }
+  // else
+  // {
+    Performance.create({location : {latitude : req.body.latitude, longitude : req.body.longitude}, title : req.body.title});
+    res.json({"status" : "success"});
+  // }
+
 })
 
 app.get('/api/performances', (req, res) => {
