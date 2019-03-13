@@ -108,7 +108,12 @@ export default class AddPerformance extends React.Component {
       referrer: "no-referrer", // no-referrer, *client
       body: JSON.stringify(payload), // body data type must match "Content-Type" header
   })
-  .then(response => response.json()); 
+  .then(response => response.json()).then(payload => {
+      if(payload.status == "success")
+      {
+        this.props.navigation.navigate('Map');
+      }
+  }); 
   }
 
 }
