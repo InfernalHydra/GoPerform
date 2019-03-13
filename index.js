@@ -34,31 +34,29 @@ app.use(session({
   }
 }));
 
-app.use((req, res, next) => {
-  if(req.session.userId)
-  {
-    User.find({_id : req.session.userId}, (err, users) => {
+app.use(function (req, res, next) {
+  //console.log(req.session);
+  if (req.session.userId) {
+     User.find({ _id: req.session.userId }, function (err, users) {
         var user = users[0];
         user.password = null;
         delete user.password;
         req.user = user;
+        console.log(user);
         next();
-    });
-  }
-  else
-  {
-    next();
+     });
+  } else {
+     next();
   }
 });
 
-app.get('/', (req, res) => {
-
+app.get('/api/user', (req, res) => {
+  res.json({"currentUser" : req.user});
 });
 
 app.post('/login', (req, res)=>{
   User.find({'email' : req.body.email}, (err, users) => {
     if(err) console.log(err);    
-
     if(users.length === 0)
     {      
       res.json({"error" : "invalid username"});
@@ -67,13 +65,17 @@ app.post('/login', (req, res)=>{
     else
     {
       var user = users[0];
-      console.log(users)
       bcrypt.compare(req.body.password, user.password, (err, match) => {
           if(err) console.log(err);
           if(match)
           {
+            //console.log(req.session.userId);
             req.session.userId = user._id;
-            res.json({"status" : "logged in"});
+            req.session.save();
+            //console.log(req.session.userId);
+            //console.log(user._id);
+            //console.log(req);
+            res.json({"status" : "success"});
           }
           else
           {
@@ -89,7 +91,7 @@ app.get('/logout', (req, res) => {
     {
       req.session.destroy();
     }
-    res.json({"status" : "logged out"});
+    res.json({"status" : "success"});
 });
 
 app.post('/add', (req, res) => {

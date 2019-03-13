@@ -11,7 +11,7 @@ export default class Map extends React.Component {
   }
   componentDidMount() {
     this._getLocationAsync();
-    this.timer = setInterval(() => this.fetchData(), 1000)
+    this.timer = setInterval(() => this.fetchData(), 7000)
   }
 
   componentWillUnmount()
@@ -79,6 +79,7 @@ export default class Map extends React.Component {
           title={"IT WAS ME DIO!"}
           description={"This is a DescriPtion"}
         />
+        <MapView.Circle center={{latitude, longitude}} radius={40} />
         {this.state.data.map((performance, index) => {
           let {latitude, longitude} = performance.location;
           return <MapView.Marker

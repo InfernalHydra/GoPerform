@@ -21,12 +21,6 @@ export default class Register extends React.Component {
 
   render() {
     console.log(this.state);
-    if(this.state.status == "success")
-    {
-      this.props.navigation.navigate('Home');
-    }
-    else
-    {
       return (
         <View style={styles.container}>
           <Text style={styles.inputLabel}>Name</Text>
@@ -41,7 +35,7 @@ export default class Register extends React.Component {
               style={styles.input}
               onChangeText={(text) => this.setState({username: text})}
               placeholder = "Enter Username"
-              value={this.state.userName}
+              value={this.state.username}
           />
   
           <Text style={styles.inputLabel}>Password</Text>
@@ -80,8 +74,6 @@ export default class Register extends React.Component {
       );
     }
 
-  }
-
   handleSubmit()
   {
     //console.log(this.state)
@@ -100,18 +92,25 @@ export default class Register extends React.Component {
       referrer: "no-referrer", // no-referrer, *client
       body: JSON.stringify(payload), // body data type must match "Content-Type" header
   })
-  .then(response => response.json()).then((payload) => {this.setState({
-    response : payload,
-    name: "",
-    username: "",
-    password: "",
-    email: "",
-    phoneNum: "",
-  })}); 
+  .then(response => response.json()).then((payload) => {
+    if(payload.status == 'success')
+    {
+      this.props.navigation.navigate('Map');
+    }
+    else
+    {
+      this.setState({
+        response : payload,
+        name: "",
+        username: "",
+        password: "",
+        email: "",
+        phoneNum: "",
+      })
+    }
+    }); 
   }
-
 }
-
 const styles = StyleSheet.create({
   container: {
     height:"100%",

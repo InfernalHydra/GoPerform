@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, TouchableHighlight } from 'react-native';
 
-const navigationTargets = ['Home', 'Login', 'Register', 'Map', 'AddPerformance']
+const navigationTargets = ['Login', 'Register', 'Map', 'AddPerformance']
 export default class NavigationIcon extends React.Component {
     constructor (props){
         super(props)
@@ -14,17 +14,28 @@ export default class NavigationIcon extends React.Component {
         this.setState({open:!this.state.open})
     }
 
-    onNav (val) {
+    onNav(val) {
         this.props.navigation.navigate(val);
     }
+
+    logout()
+    {
+        fetch('http://10.11.17.55:3000/logout')
+      .then((response) => {
+        return response.json();
+      }).then((payload => console.log(payload)));
+      this.props.navigation.navigate("Map");
+    }
+
     render() {
         if (this.state.open) {
             return(
                 <View style={styles.opened}>                    
                     <View style={styles.container}>
+                        <Button title = "Log Out" style={styles.inner} onPress={this.logout.bind(this)} />
                         {navigationTargets.map((val, ind) => {
                             return <Button key={ind} title={val} style={styles.inner} onPress={this.onNav.bind(this, val)}/>                                                     
-                        })}
+                        })} 
                     </View>
                     <TouchableHighlight style={styles.circle} onPress={this.onClick}> 
                         <Text style={styles.text}>-</Text>         
