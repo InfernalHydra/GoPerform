@@ -11,6 +11,7 @@ var performanceSchema = new Schema({
         name : {type : String},
         email : {type : String},
         phoneNumber : {type : String},
+        socialHandle: {type : String},
     },
 });
 

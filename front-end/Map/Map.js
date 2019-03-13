@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Constants, MapView, Location, Permissions } from 'expo';
-import UserModal from '../UserModal';
+import CustomCallout from './CustomCallout';
 
 export default class Map extends React.Component {
   constructor (props) {
@@ -88,14 +88,25 @@ export default class Map extends React.Component {
 
           {this.state.data.map((performance, index) => {
             let {latitude, longitude} = performance.location;
-            return <MapView.Marker
+            
+            return (<MapView.Marker
             key = {index}
             coordinate={{latitude, longitude}}
             title={performance.title}
             onCalloutPress={this.handleClick.bind(this, index)}
-            description={"This is a DescriPtion"}
-          />
-          })}
+            description={"This is a DescriPtion \n dsafadsfdasfadsfsadf"}>
+            <MapView.Callout tooltip>
+              <CustomCallout>
+                <Text style = {{fontSize : 20, textAlign : 'center'}}>{performance.title}</Text>
+                <Text style = {{textAlign : 'center'}}>{performance.user.username}</Text>
+                <Text style = {{textAlign : 'center'}}>{performance.user.name}</Text>
+                <Text style = {{textAlign : 'center'}}>{performance.user.email}</Text>
+                <Text style = {{textAlign : 'center'}}>{performance.user.phoneNumber}</Text>
+                <Text style = {{textAlign : 'center'}}>{performance.user.socialHandle}</Text>
+              </CustomCallout>
+            </MapView.Callout>
+            </MapView.Marker>
+            )})}
           </MapView>
 
       );

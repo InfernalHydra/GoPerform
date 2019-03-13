@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import { Container, Header, Content, Form, Item, Input, Label, Button, Card, CardItem } from 'native-base';
 
-const navigationTargets = ['Login', 'Register', 'Map', 'AddPerformance']
+const navigationTargets = ['Login', 'Register', 'Map', 'AddPerformance', 'Recommendations']
 export default class NavigationIcon extends React.Component {
     constructor (props){
         super(props)
