@@ -50,9 +50,10 @@ export default class Map extends React.Component {
             latitudeDelta: latitudeDelta,
             longitudeDelta: longitudeDelta,
           }}
+          animateToViewingAngle={{angle:50, duration:1000}}
         >
         <MapView.Marker
-          coordinate={{longitude, latitude}}
+          coordinate={{latitude, longitude}}
           title={"IT WAS ME DIO!"}
           description={"This is a DescriPtion"}
         />

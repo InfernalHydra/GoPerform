@@ -1,1 +1,10 @@
-{}
+{
+  "packagerPort": 19001,
+  "packagerPid": 1964,
+  "expoServerPort": 19000,
+  "webpackServerPort": null,
+  "expoServerNgrokUrl": "https://ce-qd8.thebunanna.goperform.exp.direct",
+  "packagerNgrokUrl": "https://packager.ce-qd8.thebunanna.goperform.exp.direct",
+  "ngrokPid": 19260,
+  "devToolsPort": 19002
+}
