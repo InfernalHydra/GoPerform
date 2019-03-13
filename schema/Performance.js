@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
 var performanceSchema = new Schema({
-    location: {lat : Number, lng : Number},
+    location: {latitude : Number, longitude : Number},
     title: String,
     user : [ ObjectId ],
 });
