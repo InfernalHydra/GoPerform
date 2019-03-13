@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View , TextInput, Button} from 'react-native';
 import { Constants, MapView, Location, Permissions } from 'expo';
+import NavigationIcon from './NavigationIcon';
 export default class AddPerformance extends React.Component {
   constructor(props)
   {
@@ -77,6 +78,8 @@ export default class AddPerformance extends React.Component {
         title = "Submit"
         >
         </Button>
+        <NavigationIcon navigation={this.props.navigation}/>
+
       </View>
     );
   }

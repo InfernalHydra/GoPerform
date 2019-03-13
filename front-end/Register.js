@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View , TextInput, Button} from 'react-native';
+import NavigationIcon from './NavigationIcon'
 export default class Register extends React.Component {
   constructor(props)
   {
@@ -66,6 +67,8 @@ export default class Register extends React.Component {
         title = "Submit"
         >
         </Button>
+        <NavigationIcon navigation={this.props.navigation}/>
+
       </View>
     );
   }
