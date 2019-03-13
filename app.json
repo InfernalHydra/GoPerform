@@ -24,6 +24,15 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "android": {
+      "package": "com.co.gopreform",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyCSlCYDro-XEEf4oeKt2JlzSvO5naqwvFE"
+        }
+      }
+    },
+    "description": ""
   }
 }

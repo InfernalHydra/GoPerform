@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-
+import Map from './front-end/Map'
 export default class App extends React.Component {
   constructor(props)
   {
@@ -8,28 +8,6 @@ export default class App extends React.Component {
     this.state = {
       data : ""
     };
-  }
-
-  componentDidMount()
-  {
-    this.tick();
-    this.timer = setInterval(() => this.tick(), 5000);
-  }
-
-  tick()
-  {
-    var self = this;
-    fetch('http://10.11.17.55:3000/')
-      .then((response) => {
-        return response.json();
-      })
-      .then((responseJson) => {
-      console.log(responseJson);
-      return self.setState({data : responseJson.text});
-    })
-    .catch((error) => {
-      console.error(error);
-    });
   }
 
   componentWillUnmount()
@@ -40,7 +18,8 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>{this.state.data}</Text>
+        <Map/>
+        <Text>Yo</Text>
       </View>
     );
   }
@@ -50,7 +29,8 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height:"100%",
+    width:"100%",
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
