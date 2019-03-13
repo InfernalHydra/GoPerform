@@ -21,12 +21,6 @@ export default class Register extends React.Component {
 
   render() {
     console.log(this.state);
-    if(this.state.status == "success")
-    {
-      this.props.navigation.navigate('Home');
-    }
-    else
-    {
       return (
         <View>
         <View style={styles.container}>
@@ -131,8 +125,6 @@ export default class Register extends React.Component {
       );
     }
 
-  }
-
   handleSubmit()
   {
     //console.log(this.state)
@@ -151,18 +143,25 @@ export default class Register extends React.Component {
       referrer: "no-referrer", // no-referrer, *client
       body: JSON.stringify(payload), // body data type must match "Content-Type" header
   })
-  .then(response => response.json()).then((payload) => {this.setState({
-    response : payload,
-    name: "",
-    username: "",
-    password: "",
-    email: "",
-    phoneNum: "",
-  })});
+  .then(response => response.json()).then((payload) => {
+    if(payload.status == 'success')
+    {
+      this.props.navigation.navigate('Map');
+    }
+    else
+    {
+      this.setState({
+        response : payload,
+        name: "",
+        username: "",
+        password: "",
+        email: "",
+        phoneNum: "",
+      })
+    }
+    }); 
   }
-
 }
-
 const styles = StyleSheet.create({
   container: {
     height:"100%",

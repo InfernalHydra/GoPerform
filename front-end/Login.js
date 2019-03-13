@@ -6,7 +6,7 @@ export default class Login extends React.Component {
   {
     super(props);
     this.state = {
-      data : "",
+      response : "",
       email: "",
       password: "",
     };
@@ -69,7 +69,7 @@ export default class Login extends React.Component {
     //console.log(this.state)
     var payload = this.state;
     //console.log(payload);
-    fetch('http://10.11.17.56:3000/login', {
+    fetch('http://10.11.17.55:3000/login', {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       mode: "cors", // no-cors, cors, *same-origin
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
@@ -82,11 +82,25 @@ export default class Login extends React.Component {
       referrer: "no-referrer", // no-referrer, *client
       body: JSON.stringify(payload), // body data type must match "Content-Type" header
   })
-  .then(response => {
-    response.json();
-    console.log(response.json())}
+  .then(response => response.json()).then((payload) => {
+    //console.log(payload);
+    if(payload.status == 'success')
+    {
+      this.props.navigation.navigate('Map');
+    }
+    else
+    {
+      this.setState({
+        response : payload,
+        password: "",
+        email: "",
+      });
+    }
 
-  );}
+
+    });
+  }
+
 }
 
 const styles = StyleSheet.create({
