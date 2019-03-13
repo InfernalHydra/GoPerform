@@ -1,1 +1,10 @@
-{}
+{
+  "expoServerPort": 19000,
+  "webpackServerPort": null,
+  "expoServerNgrokUrl": "https://ce-qd8.anonymous.goperform.exp.direct",
+  "packagerNgrokUrl": "https://packager.ce-qd8.anonymous.goperform.exp.direct",
+  "ngrokPid": 31440,
+  "devToolsPort": 19002,
+  "packagerPort": 19001,
+  "packagerPid": 31345
+}
