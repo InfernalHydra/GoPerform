@@ -1,6 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Map from './front-end/Map'
+import Register from './front-end/Register';
+import Login from './front-end/Login';
+
 export default class App extends React.Component {
   constructor(props)
   {
@@ -17,10 +20,12 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Map/>
-        <Text>Yo</Text>
-      </View>
+      // <View style={styles.container}>
+      //   <Map/>
+      //   <Text>Yo</Text>
+      // </View>
+      // < Register />
+      <Login />
     );
   }
 

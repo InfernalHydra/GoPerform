@@ -56,20 +56,15 @@ app.get('/', (req, res) => {
 });
 
 app.post('/login', (req, res)=>{
-  if(req.user)
-  {
-    res.json({"error" : "user already logged in"});
-    return;
-  }
-  User.find({'username' : req.body.username}, (err, users) => {
+  User.find({'email' : req.body.email}, (err, users) => {
     if(err) console.log(err);
-    var user = users[0];
-    if(user == null)
+    if(users == [])
     {
       res.json({"error" : "invalid username"});
     }
     else
     {
+      var user = users[0];
       bcrypt.compare(req.body.password, user.password, (err, match) => {
           if(err) console.log(err);
           if(match)
@@ -108,24 +103,24 @@ app.get('/api/performances', (req, res) => {
 
 app.post('/register', (req,res) => {
   if(req.user) res.json({"error" : "user already logged in"});
-
-  User.find({'email' : req.body.email}, (foundUser, err) => {
-    if(err) console.log(err);
-    if(foundUser.length != 0)
+  User.find({'email' : req.body.email}, (err, foundUser) => {
+    if(err) console.log(err);  
+    if(foundUser != null && foundUser.length > 0)
     {
       res.json({"error" : "email already in use"});
-      return;
     }
-    bcrypt.hash(req.body.password, null, null, (err, hash) => {
-      User.create({password: hash, username : req.body.username, name : req.body.name, email : req.body.email, phoneNumber : req.body.phoneNumber, socialHandle : req.body.socialHandle}, (err, user) => {
-        if(err) console.log(err);
-        req.session.userId = user._id;
-        res.json({"status" : "success"});
-        return;
-      });
-      
-    })
-
+    else
+    {
+      bcrypt.hash(req.body.password, null, null, (err, hash) => {
+        User.create({password: hash, username : req.body.username, name : req.body.name, email : req.body.email, phoneNumber : req.body.phoneNumber, socialHandle : req.body.socialHandle}, (err, user) => {
+          if(err) console.log(err);
+          req.session.userId = user._id;
+          res.json({"status" : "success"});
+          return;
+        });
+        
+      })
+    }
   })
 });
 
