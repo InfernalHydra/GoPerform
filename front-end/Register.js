@@ -20,57 +20,66 @@ export default class Register extends React.Component {
   }
 
   render() {
-    return (
-      <View style={styles.container}>
+    console.log(this.state);
+    if(this.state.status == "success")
+    {
+      this.props.navigation.navigate('Home');
+    }
+    else
+    {
+      return (
+        <View style={styles.container}>
+          <Text style={styles.inputLabel}>Name</Text>
+          <TextInput
+              style={styles.input}
+              placeholder = "Enter Name"
+              onChangeText={(text) => this.setState({name: text})}
+              value={this.state.name}
+          />
+          <Text style={styles.inputLabel}>Username</Text>
+          <TextInput
+              style={styles.input}
+              onChangeText={(text) => this.setState({username: text})}
+              placeholder = "Enter Username"
+              value={this.state.userName}
+          />
+  
+          <Text style={styles.inputLabel}>Password</Text>
+          <TextInput
+              placeholder = "Enter Password"
+              secureTextEntry
+              style={styles.input}
+              onChangeText={(text) => this.setState({password: text})}
+              value={this.state.password}
+          />
+  
+          <Text style={styles.inputLabel}>Email</Text>
+          <TextInput
+              style={styles.input}
+              placeholder = "Enter Email"
+              onChangeText={(text) => this.setState({email: text})}
+              value={this.state.email}
+          />
+  
+          <Text style={styles.inputLabel}>Phone Number</Text>
+          <TextInput
+            placeholder = "Enter Phone Number"
+              style={styles.input}
+              onChangeText={(text) => this.setState({phoneNum: text})}
+              value={this.state.phoneNum}
+          />
+          {this.state.response.error && <Text style={styles.inputLabel}>{this.state.response.error}</Text>}
+          <Button
+          onPress={this.handleSubmit.bind(this)}
+          title = "Submit"
+          >
+          </Button>
+          <NavigationIcon navigation={this.props.navigation}/>
+  
+        </View>
+      );
+    }
 
-        <Text style={styles.inputLabel}>Name</Text>
-        <TextInput
-            style={styles.input}
-            placeholder = "Enter Name"
-            onChangeText={(text) => this.setState({name: text})}
-            value={this.state.name}
-        />
-        <Text style={styles.inputLabel}>Username</Text>
-        <TextInput
-            style={styles.input}
-            onChangeText={(text) => this.setState({username: text})}
-            placeholder = "Enter Username"
-            value={this.state.userName}
-        />
-
-        <Text style={styles.inputLabel}>Password</Text>
-        <TextInput
-            placeholder = "Enter Password"
-            secureTextEntry
-            style={styles.input}
-            onChangeText={(text) => this.setState({password: text})}
-            value={this.state.password}
-        />
-
-        <Text style={styles.inputLabel}>Email</Text>
-        <TextInput
-            style={styles.input}
-            placeholder = "Enter Email"
-            onChangeText={(text) => this.setState({email: text})}
-            value={this.state.email}
-        />
-
-        <Text style={styles.inputLabel}>Phone Number</Text>
-        <TextInput
-          placeholder = "Enter Phone Number"
-            style={styles.input}
-            onChangeText={(text) => this.setState({phoneNum: text})}
-            value={this.state.phoneNum}
-        />
-        <Button
-        onPress={this.handleSubmit.bind(this)}
-        title = "Submit"
-        >
-        </Button>
-        <NavigationIcon navigation={this.props.navigation}/>
-
-      </View>
-    );
   }
  
   handleSubmit()
@@ -91,7 +100,14 @@ export default class Register extends React.Component {
       referrer: "no-referrer", // no-referrer, *client
       body: JSON.stringify(payload), // body data type must match "Content-Type" header
   })
-  .then(response => response.json()); 
+  .then(response => response.json()).then((payload) => {this.setState({
+    response : payload,
+    name: "",
+    username: "",
+    password: "",
+    email: "",
+    phoneNum: "",
+  })}); 
   }
 
 }

@@ -62,7 +62,7 @@ export default class Map extends React.Component {
     }
     else {
       let {latitude, longitude, latitudeDelta, longitudeDelta} = this.state.mapRegion;
-      console.log(this.state);
+      //console.log(this.state);
       return (
         <MapView
           style={{ flex: 1 , width: "100%", height: "100%"}}
@@ -80,11 +80,7 @@ export default class Map extends React.Component {
           description={"This is a DescriPtion"}
         />
         {this.state.data.map((performance, index) => {
-                    console.log("I am pre");
-
-          console.log(performance);
           let {latitude, longitude} = performance.location;
-          console.log(latitude)
           return <MapView.Marker
           key = {index}
           coordinate={{latitude, longitude}}

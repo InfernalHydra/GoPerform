@@ -52,7 +52,7 @@ export default class AddPerformance extends React.Component {
       this.setState({ hasLocationPermissions: true });
     }
     let coords = await Location.geocodeAsync(address);
-    console.log(coords);
+    //console.log(coords);
     this.setState({latitude : coords[0].latitude, longitude: coords[0].longitude});
    }
 
@@ -87,7 +87,7 @@ export default class AddPerformance extends React.Component {
   {
     //console.log(this.state)
     var payload = this.state;
-    console.log(payload)
+    //console.log(payload)
     if(this.state.address != "")
     {
       await this._reverseGeocode(payload.address);

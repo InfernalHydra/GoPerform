@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, TouchableHighlight } from 'react-native';
 
-const navigationTargets = ['Home', 'Login', 'Register', 'Map']
+const navigationTargets = ['Home', 'Login', 'Register', 'Map', 'AddPerformance']
 export default class NavigationIcon extends React.Component {
     constructor (props){
         super(props)
@@ -10,7 +10,7 @@ export default class NavigationIcon extends React.Component {
     }
 
     onClick() {
-        console.log("I was clicked")
+        //console.log("I was clicked")
         this.setState({open:!this.state.open})
     }
 
