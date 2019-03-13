@@ -72,14 +72,12 @@ export default class Map extends React.Component {
       return (
           <MapView
             style={{ flex: 1 , width: "100%", height: "100%"}}
-            ref = {ref=>{this.map = ref}}
             initialRegion={{
               latitude: latitude,
               longitude: longitude,
               latitudeDelta: latitudeDelta,
               longitudeDelta: longitudeDelta,
             }}
-            animateToViewingAngle={{angle:50, duration:1000}}
           >
           <MapView.Marker
             coordinate={{latitude, longitude}}

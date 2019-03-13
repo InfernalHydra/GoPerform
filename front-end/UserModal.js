@@ -19,7 +19,6 @@ export default class UserModal extends Component {
     //   console.log(this.props.index);
     return (
       <View>
-        <View>
             <Modal
             animationType="slide"
             transparent={true}
@@ -43,7 +42,6 @@ export default class UserModal extends Component {
                 </View>
             </View>
             </Modal>
-        </View>
       </View>
     );
   }
