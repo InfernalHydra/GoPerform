@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 
 const bcrypt = require('bcrypt-nodejs');
 const session = require('express-session');
+
 //mongoose.connect('mongodb://localhost/goperform', {useNewUrlParser: true});
 
 const mongoose = require('mongoose'); 
@@ -37,6 +38,7 @@ app.use(session({
 app.use(function (req, res, next) {
   //console.log(req.session);
   if (req.session.userId) {
+      console.log('owo');
      User.find({ _id: req.session.userId }, function (err, users) {
         var user = users[0];
         user.password = null;
@@ -51,6 +53,7 @@ app.use(function (req, res, next) {
 });
 
 app.get('/api/user', (req, res) => {
+  
   res.json({"currentUser" : req.user});
 });
 
@@ -87,6 +90,7 @@ app.post('/login', (req, res)=>{
             //console.log(req.session.userId);
             req.session.userId = user._id;
             req.session.save();
+            //console.log(req.session.userId);
             //console.log(req.session.userId);
             //console.log(user._id);
             //console.log(req);
@@ -144,7 +148,7 @@ app.post('/register', (req,res) => {
       bcrypt.hash(req.body.password, null, null, (err, hash) => {
         User.create({password: hash, username : req.body.username, name : req.body.name, email : req.body.email, phoneNumber : req.body.phoneNumber, socialHandle : req.body.socialHandle}, (err, user) => {
           if(err) console.log(err);
-          req.session.userId = user._id;
+          // req.session.userId = user._id;
           res.json({"status" : "success"});
           return;
         });

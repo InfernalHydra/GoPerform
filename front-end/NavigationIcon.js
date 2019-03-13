@@ -23,7 +23,7 @@ export default class NavigationIcon extends React.Component {
 
     logout()
     {
-        fetch('http://10.11.17.55:3000/logout')
+        fetch('http://10.11.17.55:3000/logout', {credentials : 'include'})
       .then((response) => {
         return response.json();
       }).then((payload => console.log(payload)));

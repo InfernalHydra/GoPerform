@@ -20,7 +20,7 @@ export default class Recommendations extends React.Component {
   render() {
     //   console.log(this.props.data);
     //   console.log(this.props.index);
-    console.log(this.state)
+    //console.log(this.state)
     if(this.state.popData.length == 0)
     {
         return (<Text>Loading</Text>);

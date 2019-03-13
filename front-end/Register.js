@@ -85,6 +85,7 @@ export default class Register extends React.Component {
       },
       redirect: "follow", // manual, *follow, error
       referrer: "no-referrer", // no-referrer, *client
+      credentials : 'include',
       body: JSON.stringify(payload), // body data type must match "Content-Type" header
   })
   .then(response => response.json()).then((payload) => {
